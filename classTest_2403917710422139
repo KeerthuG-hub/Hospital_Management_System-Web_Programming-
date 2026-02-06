@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<title>Patient Registration form</title>
+<style>
+    .body{
+        margin: 40px auto;
+        background-color: rgb(213, 248, 254);
+        padding: 10px;
+        border: solid 2px black;
+        border-radius: 10px;
+        width: 400px;
+        text-align: left;
+
+    }
+
+    label{
+        font-weight:bold;
+        display:block;
+        margin-bottom:5px;
+
+    }
+
+    .form-group{
+        display:block;
+        width:80%;
+        margin-bottom:10px;
+
+    }
+
+    h2{
+        text-align: center;
+
+
+    }
+
+    .error-message{
+        color:red;
+        font-size:12px;
+        margin-top:10px;
+    }
+    
+
+
+    .required::after{
+        content: "*";
+        color: red;
+
+    }
+
+    input,select,textarea{
+        padding-top:5px;
+        padding-bottom: 5px;
+        width:100%;
+        margin-top: 40px auto;
+        border: solid 1px black;
+
+
+    }
+
+    button{
+        background-color: navy;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor:pointer;
+        margin-right: 4px;
+        margin-left: 50px;
+    }
+
+    button[type="reset"]{
+        background-color: navy;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+</style>
+
+<body>
+
+
+    <form id="regForm" class="body" onsubmit="return validateForm()">
+        <h2>Patient Registration Form</h2>
+
+        <div class="form-group">
+            <label class="required" for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter full name" required>
+            <div class="error-message" id="fullNameError"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="required" for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+            <div class="error-message" id="dateError"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="required" for="gender">Gender</label>
+            
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+             <div class="error-message" id="genderError"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="required" for="Phone">Phone Number</label>
+            <input type="text" id="Phone" name="Phone" placeholder="Enter phone number" required>
+            <div class="error-message" id="phoneError"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="required" for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Enter email address" required>
+            <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="required" for="address">Address</label>
+            <textarea id="address" name="address" rows=3 placeholder="Enter proper address with Door no.,street,city and pincode" required></textarea>
+            <div class="error-message" id="addressError"></div>
+        </div>
+
+        
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+
+    </form>
+
+    <script>
+
+        function validateForm(){
+            let valid=true;
+            document.querySelectorAll(".error-message").forEach(el=>el.textContent="");
+            const fullName = document.getElementById("fullName").value.trim();
+            const dob = document.getElementById("dob").value;
+            const gender = document.getElementById("gender").value;
+            const phone = document.getElementById("Phone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const address = document.getElementById("address").value.trim();
+
+            
+            const phonePattern= /^\d{10}$/;
+            const namePattern = /^[a-zA-Z\s]+$/;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if(fullName === ""){
+                document.getElementById("fullNameError").textContent="Full name is required";
+                valid=false;
+            }
+            if(dob === ""){
+                document.getElementById("dateError").textContent="Date of birth is required";
+                valid=false;
+            }
+            if(gender === ""){
+                document.getElementById("genderError").textContent="Gender is required";
+                valid=false;
+            }
+            if(phone === ""){
+                document.getElementById("phoneError").textContent="Phone number is required";
+                valid=false;
+            }
+            if(email === ""){
+                document.getElementById("emailError").textContent="Email is required";
+                valid=false;
+            }
+            if(address === ""){
+                document.getElementById("addressError").textContent="Address is required";
+                valid=false;
+            }
+            
+            if(!namePattern.test(fullName)){
+                document.getElementById("fullNameError").textContent="Full name can only contain letters and spaces";
+                valid=false;
+               
+            }
+
+            if(!phonePattern.test(phone)){
+                document.getElementById("phoneError").textContent="Phone number must be 10 digits";
+                valid=false;
+            }
+
+            if(!emailPattern.test(email)){
+                document.getElementById("emailError").textContent="Invalid email format";
+                valid=false;
+                
+            }
+
+            
+
+            if(valid){
+                const confirmed = confirm("Are you sure you want to submit the form?");
+                if(!confirmed){
+                    return false;
+                }
+                else{
+                    alert("Form submitted successfully!");
+                    return true;
+                }
+            }
+            else{
+                alert("Unable to submit the form. Please correct the errors and try again.");
+                return false;
+            }
+
+
+        }
+
+    </script>
+
+</body>
+</html>

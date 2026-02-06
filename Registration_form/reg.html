@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<title>registeration form</title>
+
+
+<style>
+    body {
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+top-image {
+            display: block;
+            margin: 10px auto 20px auto;
+            width: 40px;
+        }
+
+    
+   
+        
+    
+</style>
+
+<script>
+    function validateform(){
+        let phone = document.getElementById("phone").value;
+        let email=document.getElementById("email").value;
+        let password=document.getElementById("password").value;
+        if(!email.match(emailpattern)){
+            alert("Enter a valid email adress");
+            return false;
+        }
+        if(password<6){
+            alert("password length must be 6 characters");
+            return false;
+        }
+        alert("patient register successfully!");
+        return true;
+
+
+    }
+</script>
+</head>
+<form onsubmit="return validateForm()" >
+    <div class="container">
+          <tr>
+            <th colspan="2">Patient Registration Form</th>
+        </tr>
+    
+<table border="1">
+
+<tr>
+    <th colspan="2">Patient Registration Form</th>
+</tr>
+<tr>
+    <td>Name</td>
+    <td><input type="text" required></td>
+</tr>
+<tr>
+    <td>Age</td>
+    <td><input type="number" requried</td>
+</tr>
+<tr>
+    <td>Gender</td>
+    <td><input type="radio" name="gender" required>female
+    <td><input type="radio" name ="gender">male
+    </td>
+</tr>
+
+<tr>
+    <td>Blood Group</td>
+    <td>
+        <select required>
+            <option value="">Select</option>
+            <option>A+</option>
+            <option>B+</option>
+            <option>O+</option>
+            <option>AB+</option>
+        </select>
+    </td>
+</tr>
+
+<tr>
+    <td>Phone Number</td>
+    <td><input type="text" id="phone" required></td>
+</tr>
+
+<tr>
+    <td>Email</td>
+    <td><input type="email" id="email" required></td>
+</tr>
+
+<tr>
+    <td>Create Password</td>
+    <td><input type="password" id="password" required></td>
+</tr>
+
+<tr>
+    <td>Address</td>
+    <td><textarea rows="3" cols="22" required></textarea></td>
+</tr>
+
+<tr>
+    <td>Emergency Contact</td>
+    <td><input type="text" required></td>
+</tr>
+
+
+
+<tr>
+    <td>Existing Diseases</td>
+    <td><input type="text" placeholder="Eg: Diabetes, BP"></td>
+</tr>
+
+<tr>
+    <td>Department</td>
+    <td>
+        <select required>
+            <option value="">Select Department</option>
+            <option>General Medicine</option>
+            <option>Cardiology</option>
+            <option>Orthopedics</option>
+            <option>Dermatology</option>
+        </select>
+    </td>
+</tr>
+</table>
+</form>
+
+
+</html>
